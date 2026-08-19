@@ -1,4 +1,4 @@
-# SetuMeet — Frontend (Member A scope)
+# VoxMeet — Frontend (Member A scope)
 
 React + native WebRTC frontend for the project brief's MVP:
 auth pages, dashboard, meeting room with mesh video/audio, and the
