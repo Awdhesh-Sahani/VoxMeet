@@ -1,3 +1,4 @@
+
 # SetuMeet — Frontend (Member A scope)
 
 React + native WebRTC frontend for the project brief's MVP:
@@ -98,3 +99,6 @@ is what a TURN relay (self-hosted coturn) is for — slot it into
 Mesh tops out around 4-6 participants — each browser opens N-1 peer
 connections. Fine for the MVP demo; would need an SFU to scale
 further.
+
+
+ 
