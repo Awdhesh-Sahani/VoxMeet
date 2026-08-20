@@ -11,7 +11,7 @@ export default function Join() {
   const { meetingId } = useParams();
   const { user } = useAuth();
 
-  const [status, setStatus] = useState("valid"); // checking | valid | invalid | joining | connected
+  const [status, setStatus] = useState("checking"); // checking | valid | invalid | joining | connected
   const [meeting, setMeeting] = useState(null);
   const [guestName, setGuestName] = useState("");
   const [error, setError] = useState("");
@@ -105,4 +105,3 @@ export default function Join() {
     </div>
   );
 }
- 

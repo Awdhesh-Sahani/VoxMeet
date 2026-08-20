@@ -45,7 +45,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>VoxMeet</h1>
+        <h1>SetuMeet</h1>
         <div>
           <span className="user-name">{user?.name}</span>
           <button className="btn-link" onClick={logout}>

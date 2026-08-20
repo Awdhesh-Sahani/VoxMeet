@@ -24,7 +24,7 @@ export default function VideoTile({ stream, userName, isLocal, camOn = true }) {
           autoPlay
           playsInline
           muted={isLocal}
-          className="video-el"
+          className={isLocal ? "video-el video-el-mirrored" : "video-el"}
         />
       ) : (
         <div className="video-placeholder">

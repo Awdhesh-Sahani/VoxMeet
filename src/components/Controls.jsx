@@ -42,7 +42,7 @@ export default function Controls({
       </button>
 
       <button className="control-btn control-leave" onClick={onLeave}>
-        Leave
+        Leave Meeting
       </button>
     </div>
   );

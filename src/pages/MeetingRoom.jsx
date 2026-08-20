@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useLocalMedia } from "../hooks/useLocalMedia";
 import { useSignaling } from "../hooks/useSignaling";
-import { useWebRTC } from "../hooks/useWebRTC";
+import { usePeerConnections } from "../hooks/usePeerConnections";
 import { useTranslation } from "../hooks/useTranslation";
 import VideoGrid from "../components/VideoGrid";
 import Controls from "../components/Controls";
@@ -19,15 +18,17 @@ export default function MeetingRoom() {
     sessionStorage.getItem(`meeting-${meetingCode}-name`) ||
     "Guest";
 
-  const { stream, micOn, camOn, toggleMic, toggleCam, error: mediaError } =
-    useLocalMedia();
   const { socket, connected } = useSignaling();
-  const { remoteParticipants } = useWebRTC({
-    socket,
-    meetingId: meetingCode,
-    userName,
-    localStream: stream,
-  });
+  const {
+    localStream,
+    mediaError,
+    remoteStreams: remoteParticipants,
+    micOn,
+    camOn,
+    toggleMic,
+    toggleCam,
+    leaveRoom,
+  } = usePeerConnections({ socket, meetingId: meetingCode, userName });
 
   const [translationOpen, setTranslationOpen] = useState(false);
   const [targetLang, setTargetLang] = useState("ta");
@@ -67,6 +68,7 @@ export default function MeetingRoom() {
 
   const handleLeave = () => {
     stopTranslating();
+    leaveRoom(); // closes all RTCPeerConnections, stops local tracks, notifies signaling server
     navigate("/dashboard");
   };
 
@@ -79,7 +81,7 @@ export default function MeetingRoom() {
 
       <div className="meeting-body">
         <VideoGrid
-          localStream={stream}
+          localStream={localStream}
           localName={userName}
           camOn={camOn}
           remoteParticipants={remoteParticipants}

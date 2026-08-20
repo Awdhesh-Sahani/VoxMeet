@@ -4,7 +4,7 @@ import { SIGNALING_URL } from "../utils/constants";
 
 /**
  * Opens one socket.io connection for the meeting room lifetime.
- * Kept separate from useWebRTC so the signaling transport can be
+ * Kept separate from usePeerConnections so the signaling transport can be
  * reused later (e.g. text chat) without touching peer-connection logic.
  */
 export function useSignaling() {
